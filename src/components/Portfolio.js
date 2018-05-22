@@ -2,15 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Swiper from 'react-native-swiper';
 import PortfolioIndex from './PortfolioIndex.js';
+import PriceChart from './PriceChart';
 
-const styles = StyleSheet.create( {
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-} );
 
 export default class Login extends React.Component {
   constructor( props ) {
@@ -28,6 +21,9 @@ export default class Login extends React.Component {
         <View style={styles.container}>
           <Text>Hi! {this.props.navigation.getParam( 'username', '' )}</Text>
           <Text> ID: {this.state.userId}</Text>
+        </View>
+        <View style={styles.container}>
+          <PriceChart />
         </View>
       </Swiper>
     );
