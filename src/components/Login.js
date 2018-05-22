@@ -42,6 +42,7 @@ export default class Login extends React.Component {
         } else {
           this.props.navigation.navigate( 'Portfolio', {
             username: data.name,
+            userId: data.id,
           } );
         //   this.setState( { id: data.id } );
         //   this.props.handleAuth( 'true', this.state.id, data.name );
