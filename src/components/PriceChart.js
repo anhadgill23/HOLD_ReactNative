@@ -17,7 +17,6 @@ class PriceChart extends React.Component {
       .then( ( historicalData ) => {
         const pointsArray = historicalData.Data.map( data => data.close );
         const timeStampArray = historicalData.Data.map( data => moment.unix( data.time ).format( 'MM/DD/YYYY' ) );
-        this.setChartData( pointsArray, timeStampArray );
         this.setState( {
           pointsArray,
         } );
@@ -40,7 +39,7 @@ class PriceChart extends React.Component {
   }
   render() {
     const data = [50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80];
-
+    this.fetchHistoricalData();
     return (
       <View>
         <Text>30 day price chart</Text>
