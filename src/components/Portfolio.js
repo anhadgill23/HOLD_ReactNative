@@ -30,9 +30,7 @@ export default class Login extends React.Component {
           <Text>Hi! {this.props.navigation.getParam( 'username', '' )}</Text>
           <Text> ID: {this.state.userId}</Text>
         </View>
-        <View style={styles.container}>
-          <PriceChart />
-        </View>
+        <PriceChart />
       </Swiper>
     );
   }
