@@ -1,10 +1,14 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { LineChart, Grid } from 'react-native-svg-charts';
+import moment from 'moment';
 
 class PriceChart extends React.Component {
   constructor( props ) {
     super( props );
+    this.state = {
+      pointsArray: [],
+    };
     this.fetchHistoricalData = this.fetchHistoricalData.bind( this );
   }
   fetchHistoricalData() {
@@ -14,6 +18,9 @@ class PriceChart extends React.Component {
         const pointsArray = historicalData.Data.map( data => data.close );
         const timeStampArray = historicalData.Data.map( data => moment.unix( data.time ).format( 'MM/DD/YYYY' ) );
         this.setChartData( pointsArray, timeStampArray );
+        this.setState( {
+          pointsArray,
+        } );
         return pointsArray;
       } ).then( ( pointsArray ) => {
         fetch( 'https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD' )
@@ -39,7 +46,7 @@ class PriceChart extends React.Component {
         <Text>30 day price chart</Text>
         <LineChart
           style={{ height: 200 }}
-          data={data}
+          data={this.state.pointsArray}
           svg={{ stroke: 'rgb(134, 65, 244)' }}
           contentInset={{ top: 20, bottom: 20 }}
         >
