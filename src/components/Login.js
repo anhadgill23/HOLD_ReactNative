@@ -40,10 +40,12 @@ export default class Login extends React.Component {
         if ( data.err === 'Email or password incorrect' ) {
           this.setState( { error: 'Your email or password is incorrect, please try again.' } );
         } else {
+          this.props.navigation.navigate( 'Portfolio', {
+            username: data.name,
+          } );
         //   this.setState( { id: data.id } );
         //   this.props.handleAuth( 'true', this.state.id, data.name );
         //   this.props.history.push( `/portfolio/${data.id}` );
-
         }
       } )
       .catch( ( error ) => {
@@ -54,7 +56,7 @@ export default class Login extends React.Component {
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
-        <Text>HOLD{'\n'}</Text>
+        <Text>HOLD</Text>
         <TextInput
           style={styles.textInput}
           onChangeText={email => this.setState( { email } )}
